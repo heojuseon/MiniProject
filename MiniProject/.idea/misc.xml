@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/MiniProject/app/src/main/res/drawable-v24/button_shape.xml" value="0.1" />
+        <entry key="..\:/MiniProject/app/src/main/res/drawable-v24/edittext_shape.xml" value="0.1" />
+        <entry key="..\:/MiniProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17685185185185184" />
+        <entry key="..\:/MiniProject/app/src/main/res/drawable/button_shape.xml" value="0.17685185185185184" />
+        <entry key="..\:/MiniProject/app/src/main/res/drawable/edittext_shape.xml" value="0.17685185185185184" />
+        <entry key="..\:/MiniProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17685185185185184" />
+        <entry key="..\:/MiniProject/app/src/main/res/drawable/tab_shape.xml" value="0.17222222222222222" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/fragment_tab1__home.xml" value="0.25364583333333335" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/fragment_tab2__lesson.xml" value="0.25364583333333335" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/fragment_tab3__community.xml" value="0.25364583333333335" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/fragment_tab4__option.xml" value="0.25364583333333335" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/sample.xml" value="0.25364583333333335" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/signup_page.xml" value="0.264" />
+        <entry key="..\:/MiniProject/app/src/main/res/menu/menu_tab.xml" value="0.25364583333333335" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
