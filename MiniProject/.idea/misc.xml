@@ -11,7 +11,9 @@
         <entry key="..\:/MiniProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17685185185185184" />
         <entry key="..\:/MiniProject/app/src/main/res/drawable/tab_shape.xml" value="0.17222222222222222" />
         <entry key="..\:/MiniProject/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/MiniProject/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/activity_main_bottom.xml" value="0.25364583333333335" />
+        <entry key="..\:/MiniProject/app/src/main/res/layout/fragment_blank.xml" value="0.25364583333333335" />
         <entry key="..\:/MiniProject/app/src/main/res/layout/fragment_tab1__home.xml" value="0.25364583333333335" />
         <entry key="..\:/MiniProject/app/src/main/res/layout/fragment_tab2__lesson.xml" value="0.25364583333333335" />
         <entry key="..\:/MiniProject/app/src/main/res/layout/fragment_tab3__community.xml" value="0.25364583333333335" />

@@ -14,6 +14,9 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.example.miniproject.main.Tab1_Home;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -46,11 +49,10 @@ public class LoginActivity extends AppCompatActivity {
                 editor.commit();
                 //데이터를 저장하거나 삭제할때는 반드시 commit()를 해주셔야 합니다.
 
-                
-
                 //MainActivity로 화면 전환
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivityResult.launch(intent);
+
             }
         });
 
