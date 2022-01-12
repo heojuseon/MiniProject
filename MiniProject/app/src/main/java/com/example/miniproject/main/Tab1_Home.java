@@ -44,7 +44,10 @@ public class Tab1_Home extends Fragment {
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //fragment에서 activity 전환할때는 getActivity()사용
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
+                //fragment에서 activity 전환할때는 startActivity()사용
                 startActivity(intent);
             }
         });
