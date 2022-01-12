@@ -27,17 +27,21 @@ public class InstagramAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         //리사이클러뷰에 보이는 레이아웃 구성을 설정
 
         if (viewType == 0) {
+            //viewType 이 0일경우 instagram_item의 화면을 나타낸다.
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+            //뷰홀더 객채 생성
             View itemView = inflater.inflate(R.layout.instagram_item, viewGroup, false);
 
             return new Ins_Item(itemView);
 
         } else if (viewType == 1) {
+            //viewType 이 1일경우 cf_item 화면을 나타낸다.
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
             View itemView2 = inflater.inflate(R.layout.cf_item, viewGroup, false);
 
             return new Cf_Item(itemView2);
         }else{
+            //viewType 이 그외일 경우 다시 instagram_item 화면을 나타낸다.
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
             View itemView = inflater.inflate(R.layout.instagram_item, viewGroup, false);
 
@@ -52,6 +56,10 @@ public class InstagramAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         //3번째로 onBindViewHolder 실행
         //생성된 뷰홀더에 데이터를 바인딩 해주는 함수
         //items 데이터가 리스트의 4번째 데이터라면 position으로 4가 들어온다
+
+        //instanceof 사용(="객체 instanceof 클래스" 를 선언)
+        //obj객체가 InsData클래스로부터 생성된 객체이면 insItem.setItem(ins);
+        //obj객체가 CfData클래스로부터 생성된 객체이면 cfItem.setItem(cf);
 
         Object obj = items.get(position);
         if (obj instanceof InsData){

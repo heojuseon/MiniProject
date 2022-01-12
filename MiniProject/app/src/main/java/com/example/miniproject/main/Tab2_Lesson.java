@@ -31,7 +31,7 @@ public class Tab2_Lesson extends Fragment {
         //레이아웃 매니저는 리싸이클러뷰가 보일 기본적인 형태를 설정할 때 사용한다.
         //LinearLayoutManager : 세로방향(Vertical), 가로방향(Horizontal)
         //GridLayoutManager : 격자모양
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());//현재 실행되고 있는 View의 context를 return 하는데 보통은 현재 활성화된 activity의 context가 된다.
         recyclerView.setLayoutManager(layoutManager);
 
         InstagramAdapter adapter = new InstagramAdapter();
