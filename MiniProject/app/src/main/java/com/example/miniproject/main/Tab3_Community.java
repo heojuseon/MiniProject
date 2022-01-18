@@ -82,10 +82,9 @@ public class Tab3_Community extends Fragment {
         btnup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateRecord("허주선", "운ㄷ", 3);
+                updateRecord("허주선", "운동수정2", 1);
             }
         });
-
 
         return rootView;
     }
@@ -128,6 +127,16 @@ public class Tab3_Community extends Fragment {
                 + ")");
     }
 
+    private void deleteRecord(String userName, String userHealth, int userCount){
+        database.execSQL("DELETE FROM " + tableName + " WHERE name = '" + userName + "';");
+
+    }
+
+    private void updateRecord(String userName, String userHealth, int userCount){
+        database.execSQL("UPDATE " + tableName + " SET health = '" + userHealth + "' WHERE name = '" + userName + "';");
+
+    }
+
     private void executeQuery() {
 
         Cursor cursor = database.rawQuery("select _id, name, health, count from "+tableName, null);
@@ -149,15 +158,6 @@ public class Tab3_Community extends Fragment {
 
         cursor.close();
     }
-    private void deleteRecord(String userName, String userHealth, int userCount){
-        database.execSQL("DELETE FROM " + tableName + " WHERE name = '" + userName + "';");
-
-    }
-    private void updateRecord(String userName, String userHealth, int userCount){
-        database.execSQL("UPDATE " + tableName + " SET health = '" + userHealth + "' WHERE name = '" + userName + "';");
-
-    }
-
 
 
 }
