@@ -24,9 +24,11 @@ import com.example.miniproject.main.Tab1_Home;
 public class LoginActivity extends AppCompatActivity {
 
     DataBaseHelper dbHelper2;
+    SQLiteDatabase database;
 
     EditText editID;
     EditText editPW;
+
 
 
 
@@ -49,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 String pw = editPW.getText().toString();
 
 
+
                 SharedPreferences sharedPreferences = getSharedPreferences("shared", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 //위에서 지정한 shared.xml에 어떤 key 값으로 저장할지 정하고
@@ -60,13 +63,16 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 //INSERT Database
-                dbHelper2.insertlogin(editID.getText().toString(), editPW.getText().toString());
+                dbHelper2.insertLogin(editID.getText().toString(), editPW.getText().toString());
+
+
+//                database = dbHelper2.getWritableDatabase();
+//                database.execSQL("INSERT INTO loginTBL(nameid, password) VALUES('" + editID.getText().toString() + "','" + editPW.getText().toString() + "');");
+//                database.close();
 
 
                 //SELECT Database
                 dbHelper2.loginQuery();
-
-
 
 
                 //MainActivity로 화면 전환
@@ -87,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
 
 
     //onActivityResult 예전 메소드는 현재 버전이 지원하지 않음

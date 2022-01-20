@@ -57,8 +57,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         Log.d("추가", userName + "\t" + userHealth + "\t" + userCount);
     }
+
     //INSERT문(회원가입 정보)
-    public void insertlogin(String UserID, String UserPD){
+    public void insertLogin(String UserID, String UserPD){
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL("INSERT INTO loginTBL(nameid, password) VALUES('" + UserID + "','" + UserPD + "');");
 
@@ -107,10 +108,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
     }
+
     //SELECT문(로그인 정보)
     public  void loginQuery(){
         SQLiteDatabase database = getReadableDatabase();
-        Cursor cursor2 = database.rawQuery("SELECT * FROM groupTBL", null);
+        Cursor cursor2 = database.rawQuery("SELECT * FROM loginTBL", null);
 
         int recordCount2 = cursor2.getCount();
 
