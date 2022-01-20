@@ -23,22 +23,17 @@ import com.example.miniproject.main.Tab1_Home;
 
 public class LoginActivity extends AppCompatActivity {
 
+    DataBaseHelper dbHelper2;
+
     EditText editID;
     EditText editPW;
 
-    DataBaseHelper dbHelper2;
-    SQLiteDatabase database2;
-
-    String tableName2 = "loginTBL";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        createDatabase2();
-        createTable2(tableName2);
 
 
         Button logbtn = (Button) findViewById(R.id.login);
@@ -53,11 +48,6 @@ public class LoginActivity extends AppCompatActivity {
                 String id = editID.getText().toString();
                 String pw = editPW.getText().toString();
 
-                insertLogin(editID.getText().toString(), editPW.getText().toString());
-                Log.d("로그인 정보", id + pw);
-
-                loginQuery();
-
 
                 SharedPreferences sharedPreferences = getSharedPreferences("shared", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -69,12 +59,23 @@ public class LoginActivity extends AppCompatActivity {
                 //데이터를 저장하거나 삭제할때는 반드시 commit()를 해주셔야 합니다.
 
 
+                //INSERT Database
+                dbHelper2.insertlogin(editID.getText().toString(), editPW.getText().toString());
+
+
+                //SELECT Database
+                dbHelper2.loginQuery();
+
+
+
+
                 //MainActivity로 화면 전환
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivityResult.launch(intent);
 
             }
         });
+
 
         signbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,71 +85,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void createDatabase2() {
-        Log.d("DB","createDatabase 호출됨.");
-
-        dbHelper2 = new DataBaseHelper(this);
-        database2 = dbHelper2.getWritableDatabase();
-
-        Log.d("DB","데이터베이스 생성함 ");
-    }
-
-
-    //로그인 테이블 하나 더 생성
-    private void createTable2(String tableName2) {
-
-        if (database2 == null) {
-            Log.d("DB","데이터베이스를 먼저 생성하세요.");
-            return;
-        }
-
-        database2.execSQL("create table if not exists " + tableName2 + "("
-                + " _id2 integer PRIMARY KEY autoincrement, "
-                + " id text, "
-                + " pw text)");
-
-        Log.d("DB","테이블 생성 : " + tableName2);
-    }
-
-    private void insertLogin(String userID, String userPW) {
-        if (database2 == null) {
-            Log.d("DB","데이터베이스를 생성하세요.");
-            return;
-        }
-
-        database2.execSQL("insert into " + tableName2
-                + " (Id, Pw) "
-                + " values "
-                + "("+ userID
-                + ", "+ userPW
-                + ")");
 
     }
-
-    //로그인 정보 조회
-    private void loginQuery() {
-
-        Cursor cursor = database2.rawQuery("select _id2, Id, Pw from "+ tableName2, null);
-        int recordCount = cursor.getCount(); //레코드 개수
-
-        for (int i = 0; i < recordCount; i++) {
-            //for문 사용시, getCount()메소드를 이용해 전체 레코드 개수를 알아내어 moveToNext()메소드 사용
-
-            cursor.moveToNext();    //cursor를 다음으로 이동
-
-            int _id2 = cursor.getInt(0);
-            String Id = cursor.getString(1);
-            String Pw = cursor.getString(2);
-
-            Log.d("DB","레코드 " + i + " : " + _id2 + ", " + Id + ", " + Pw);
-
-        }
-
-        cursor.close();
-    }
-
 
 
 

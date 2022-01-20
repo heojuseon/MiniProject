@@ -8,7 +8,10 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.miniproject.db.DataBaseHelper;
+
 public class SignUpActivity extends AppCompatActivity {
+
 
     EditText editEmail;
     EditText editPassword;
