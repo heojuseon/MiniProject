@@ -11,15 +11,19 @@ import com.example.miniproject.R;
 import com.example.miniproject.main.Tab3_Community;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    public static String dbName = "groupTBL.db";
+
+    public static String dbName = "loginTBL.db";
 
     public static int VERSION = 1;
+
+
 
 
     public DataBaseHelper(Context context) {
         //DataBaseHelper 생성자
         super(context, dbName, null, VERSION);
     }
+
 
 
     @Override
@@ -31,7 +35,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS groupTBL (id integer PRIMARY KEY AUTOINCREMENT, name TEXT, health TEXT, count integer)");
 
         //테이블 하나 더 생성(로그인 정보 테이블)
-        db.execSQL("CREATE TABLE IF NOT EXISTS loginTBL (id2 integer PRIMARY KEY AUTOINCREMENT, idname TEXT, password TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS loginTBL (id2 integer PRIMARY KEY AUTOINCREMENT, nameid TEXT, password TEXT)");
+
+
     }
 
     @Override
@@ -59,11 +65,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     //INSERT문(회원가입 정보)
-    public void insertLogin(String UserID, String UserPD){
+    public void insertLogin(String userID, String userPD){
         SQLiteDatabase database = getWritableDatabase();
-        database.execSQL("INSERT INTO loginTBL(nameid, password) VALUES('" + UserID + "','" + UserPD + "');");
+        database.execSQL("INSERT INTO loginTBL(nameid, password) VALUES('" + userID + "','" + userPD + "');");
 
-        Log.d("회원가입 정보 추가", UserID + "\n" + UserPD);
+        Log.d("회원가입 정보 추가", "\n" + userID + "\n" + userPD);
     }
 
 

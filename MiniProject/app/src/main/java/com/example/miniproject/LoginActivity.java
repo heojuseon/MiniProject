@@ -24,12 +24,10 @@ import com.example.miniproject.main.Tab1_Home;
 public class LoginActivity extends AppCompatActivity {
 
     DataBaseHelper dbHelper2;
-    SQLiteDatabase database;
+
 
     EditText editID;
     EditText editPW;
-
-
 
 
     @Override
@@ -43,6 +41,13 @@ public class LoginActivity extends AppCompatActivity {
 
         editID = findViewById(R.id.editid);
         editPW = findViewById(R.id.editpw);
+
+
+
+        //이걸 왜 빼먹냐...
+        dbHelper2 = new DataBaseHelper(this);
+
+
 
         logbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +67,9 @@ public class LoginActivity extends AppCompatActivity {
                 //데이터를 저장하거나 삭제할때는 반드시 commit()를 해주셔야 합니다.
 
 
+
                 //INSERT Database
-                dbHelper2.insertLogin(editID.getText().toString(), editPW.getText().toString());
+                dbHelper2.insertLogin(id, pw);
 
 
 //                database = dbHelper2.getWritableDatabase();
