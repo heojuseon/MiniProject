@@ -12,10 +12,11 @@ import com.example.miniproject.db.DataBaseHelper;
 
 public class SignUpActivity extends AppCompatActivity {
 
-
     EditText editEmail;
     EditText editPassword;
     EditText editRepeat;
+
+    DataBaseHelper dbHelper3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,10 @@ public class SignUpActivity extends AppCompatActivity {
         editEmail = findViewById(R.id.editemail);
         editPassword = findViewById(R.id.editpassword);
         editRepeat = findViewById(R.id.editrepeat);
+
+
+        //헬퍼 객체 생성
+        dbHelper3 = new DataBaseHelper(this);
 
 
         Button canclebtn = (Button)findViewById(R.id.signcancel);
@@ -44,6 +49,13 @@ public class SignUpActivity extends AppCompatActivity {
                 String email = editEmail.getText().toString();
                 String password = editPassword.getText().toString();
                 String repeat = editRepeat.getText().toString();
+
+
+                //INSERT Database
+                dbHelper3.insertSignup(email, password, repeat);
+
+                //SELECT Database
+                dbHelper3.signupQuery();
 
 
                 Intent intent = getIntent();

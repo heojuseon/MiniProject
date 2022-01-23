@@ -12,7 +12,7 @@ import com.example.miniproject.main.Tab3_Community;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    public static String dbName = "loginTBL.db";
+    public static String dbName = "test.db";
 
     public static int VERSION = 1;
 
@@ -37,6 +37,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //테이블 하나 더 생성(로그인 정보 테이블)
         db.execSQL("CREATE TABLE IF NOT EXISTS loginTBL (id2 integer PRIMARY KEY AUTOINCREMENT, nameid TEXT, password TEXT)");
 
+        //회원가입 테이블 생성
+        db.execSQL("CREATE TABLE IF NOT EXISTS signupTBL (id3 integer PRIMARY KEY AUTOINCREMENT, newid TEXT, newpassword TEXT, repassword TEXT)");
 
     }
 
@@ -54,6 +56,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if (newVersion > 1){
             db.execSQL("DROP TABLE IF EXISTS loginTBL");
         }
+
+        //회원가입 테이블(버전 2이상 기존테이블 loginTBL 삭제)
+        if (newVersion > 1){
+            db.execSQL("DROP TABLE IF EXISTS signupTBL");
+        }
     }
 
     //ISERT문
@@ -64,12 +71,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Log.d("추가", userName + "\t" + userHealth + "\t" + userCount);
     }
 
-    //INSERT문(회원가입 정보)
+    //INSERT문(로그인 정보)
     public void insertLogin(String userID, String userPD){
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL("INSERT INTO loginTBL(nameid, password) VALUES('" + userID + "','" + userPD + "');");
 
-        Log.d("회원가입 정보 추가", "\n" + userID + "\n" + userPD);
+        Log.d("로그인 정보 추가", "\n" + userID + "\n" + userPD);
+    }
+
+    //INSERT문(회원가입 정보)
+    public void insertSignup(String newuserID, String newuserPD, String reuserPD){
+        SQLiteDatabase database = getWritableDatabase();
+        database.execSQL("INSERT INTO signupTBL(newid, newpassword, repassword) VALUES('" + newuserID + "','" + newuserPD + "','" + reuserPD + "');");
+
+        Log.d("회원가입 정보 추가", "\n" + newuserID + "\n" + newuserPD + "\n" + reuserPD);
     }
 
 
@@ -129,7 +144,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             String nameid = cursor2.getString(1);
             String password = cursor2.getString(2);
 
-            Log.d("DB2","레코드 " + i + " : " + id2 + ", " + nameid + ", " + password);
+            Log.d("loginDB","레코드 " + i + " : " + id2 + ", " + nameid + ", " + password);
+        }
+    }
+
+    //SELECT문(회원가입 정보)
+    public  void signupQuery(){
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor cursor3 = database.rawQuery("SELECT * FROM signupTBL", null);
+
+        int recordCount3 = cursor3.getCount();
+
+        for (int i = 0; i < recordCount3; i++){
+            cursor3.moveToNext();
+
+            int id3 = cursor3.getInt(0);
+            String newid = cursor3.getString(1);
+            String newpassword = cursor3.getString(2);
+            String repassword = cursor3.getString(3);
+
+            Log.d("signupDB","레코드 " + i + " : " + id3 + ", " + newid + ", " + newpassword + ", " + repassword);
         }
     }
 }
