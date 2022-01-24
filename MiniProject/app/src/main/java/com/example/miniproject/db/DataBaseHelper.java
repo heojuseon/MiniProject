@@ -12,7 +12,7 @@ import com.example.miniproject.main.Tab3_Community;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    public static String dbName = "test.db";
+    public static String dbName = "test2.db";
 
     public static int VERSION = 1;
 
@@ -40,6 +40,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //회원가입 테이블 생성
         db.execSQL("CREATE TABLE IF NOT EXISTS signupTBL (id3 integer PRIMARY KEY AUTOINCREMENT, newid TEXT, newpassword TEXT, repassword TEXT)");
 
+        //인스타 테이블 생성
+        db.execSQL("CREATE TABLE IF NOT EXISTS insTBL (id integer PRIMARY KEY AUTOINCREMENT, userimg TEXT, name TEXT, mainimg TEXT, inslike TEXT, tag TEXT)");
     }
 
     @Override
@@ -60,6 +62,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //회원가입 테이블(버전 2이상 기존테이블 loginTBL 삭제)
         if (newVersion > 1){
             db.execSQL("DROP TABLE IF EXISTS signupTBL");
+        }
+
+        //인스타 테이블(버전 2이상 기존테이블 loginTBL 삭제)
+        if (newVersion > 1){
+            db.execSQL("DROP TABLE IF EXISTS insTBL");
         }
     }
 
@@ -87,6 +94,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Log.d("회원가입 정보 추가", "\n" + newuserID + "\n" + newuserPD + "\n" + reuserPD);
     }
 
+    //INSERT문(인스타 정보)
+    public  void insertIns(String userImage, String userName, String mainImage, String userLike, String usertag){
+        SQLiteDatabase database = getWritableDatabase();
+        database.execSQL("INSERT INTO insTBL(userimg, name, mainimg, inslike, tag) VALUES('" + userImage + "','" + userName + "','" + mainImage + "','" + userLike + "','" + usertag + "');");
+
+        Log.d("인스타 정보 추가", "\n" + userImage + "\n" + userName + "\n" + mainImage + "\n" + userLike + "\n" + usertag);
+    }
+
 
     //UPDAT문
     public void updateRecord(String userName, String userHealth, int userCount){
@@ -106,28 +121,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     //SELECT문
-    public void executeQuery(){
+    public Cursor userSelect(){
+        //Tab3 화면 textview로 출력하기위해서 cursor retrun
 
         SQLiteDatabase database = getReadableDatabase();
+
+        //Cursor 객체 생성
         Cursor cursor = database.rawQuery("SELECT * FROM groupTBL", null);  //SELECT * FROM : 모든 컬럼 가지고 온다
 
-        int recordCount = cursor.getCount(); //레코드 개수
+        return cursor;
 
-        for (int i = 0; i < recordCount; i++) {
-            //for문 사용시, getCount()메소드를 이용해 전체 레코드 개수를 알아내어 moveToNext()메소드 사용
-
-            cursor.moveToNext();    //cursor를 다음으로 이동
-
-            int id = cursor.getInt(0);
-            String name = cursor.getString(1);
-            String health = cursor.getString(2);
-            int count = cursor.getInt(3);
-
-
-            Log.d("DB","레코드 " + i + " : " + id + ", " + name + ", " + health + ", " + count);
-        }
-
-        cursor.close();
     }
 
     //SELECT문(로그인 정보)
@@ -135,7 +138,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor2 = database.rawQuery("SELECT * FROM loginTBL", null);
 
+
         int recordCount2 = cursor2.getCount();
+
 
         for (int i = 0; i < recordCount2; i++){
             cursor2.moveToNext();
@@ -145,7 +150,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             String password = cursor2.getString(2);
 
             Log.d("loginDB","레코드 " + i + " : " + id2 + ", " + nameid + ", " + password);
+
         }
+        cursor2.close();
     }
 
     //SELECT문(회원가입 정보)
@@ -165,5 +172,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
             Log.d("signupDB","레코드 " + i + " : " + id3 + ", " + newid + ", " + newpassword + ", " + repassword);
         }
+        cursor3.close();
+    }
+
+    //SELECT문(인스타 정보)
+    public  Cursor insQuery(){
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor cursor4 = database.rawQuery("SELECT * FROM insTBL", null);
+
+//        int recordCount3 = cursor4.getCount();
+//
+//        for (int i = 0; i < recordCount3; i++){
+//            cursor4.moveToNext();
+//
+//            int id = cursor4.getInt(0);
+//            String userimg = cursor4.getString(1);
+//            String name = cursor4.getString(2);
+//            String mainimg = cursor4.getString(3);
+//            String inslike = cursor4.getString(4);
+//            String tag = cursor4.getString(5);
+//
+//            Log.d("insDB","레코드 " + i + " : " + id + ", " + userimg + ", " + name + ", " + mainimg + ", " + inslike + ", " + tag);
+//        }
+//        cursor4.close();
+        return cursor4;
     }
 }

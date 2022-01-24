@@ -125,4 +125,63 @@
             android:textSize="24sp" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/insuserimage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="UserImage" />
+
+        <EditText
+            android:id="@+id/insname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <EditText
+            android:id="@+id/insmainimage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="MainImage" />
+
+        <EditText
+            android:id="@+id/inslike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Like" />
+
+        <EditText
+            android:id="@+id/instag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Tag" />
+
+        <Button
+            android:id="@+id/insinsert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="추가2" />
+
+        <Button
+            android:id="@+id/insselect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="조회2" />
+    </LinearLayout>
+
 </LinearLayout>

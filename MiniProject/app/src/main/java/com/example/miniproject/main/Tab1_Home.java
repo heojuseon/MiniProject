@@ -4,11 +4,13 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +21,14 @@ import com.example.miniproject.LoginActivity;
 import com.example.miniproject.MainActivity;
 import com.example.miniproject.R;
 import com.example.miniproject.SignUpActivity;
+import com.example.miniproject.db.DataBaseHelper;
 
 public class Tab1_Home extends Fragment {
 
     TextView textView;
     Button backbtn;
+
+    DataBaseHelper dbHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +42,10 @@ public class Tab1_Home extends Fragment {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_tab1__home, container, false);
 
         textView = rootView.findViewById(R.id.information);
+
+
+        //헬퍼객체 생성
+        dbHelper = new DataBaseHelper(this.getContext());
 
 
         //버튼을 생성하여 다시 LoginActivity로 돌아가는 Intent 생성
@@ -63,6 +72,27 @@ public class Tab1_Home extends Fragment {
 
         return rootView;
 
+    }
+
+    public  void insSelect(){
+        Cursor cursor4 = dbHelper.insQuery();
+
+        int recordCount3 = cursor4.getCount();
+
+        for (int i = 0; i < recordCount3; i++){
+            cursor4.moveToNext();
+
+            int id = cursor4.getInt(0);
+            String userimg = cursor4.getString(1);
+            String name = cursor4.getString(2);
+            String mainimg = cursor4.getString(3);
+            String inslike = cursor4.getString(4);
+            String tag = cursor4.getString(5);
+
+            Log.d("insDB","레코드 " + i + " : " + id + ", " + userimg + ", " + name + ", " + mainimg + ", " + inslike + ", " + tag);
+        }
+
+        cursor4.close();
     }
 
 }

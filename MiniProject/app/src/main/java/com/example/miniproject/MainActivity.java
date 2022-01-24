@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.tab1home:
                         getSupportFragmentManager().beginTransaction().
                                 replace(R.id.frameLayout, tab1_home).commit();
+
+                        //DataBaseHelper클래스의 조회쿼리인 insQuery()메소드에 관한 insSelect()메소드를 호출
+                        tab1_home.insSelect();
+
                         return true;
 
                     case R.id.tab2lesson:
