@@ -65,6 +65,7 @@ public class Tab3_Community extends Fragment {
         btninsin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 dbHelper.insertIns(edituserimg.getText().toString()
                         , editinsname.getText().toString()
                         , editmainimg.getText().toString()
