@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="UserImage" />
+            android:hint="UserImage" />
 
         <EditText
             android:id="@+id/insname"
@@ -145,7 +145,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name" />
 
         <EditText
             android:id="@+id/insmainimage"
@@ -153,7 +153,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="MainImage" />
+            android:hint="MainImage" />
 
         <EditText
             android:id="@+id/inslike"
@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Like" />
+            android:hint="Like" />
 
         <EditText
             android:id="@+id/instag"
@@ -169,7 +169,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Tag" />
+            android:hint="Tag" />
 
         <Button
             android:id="@+id/insinsert"
