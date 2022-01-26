@@ -9,6 +9,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,15 +24,20 @@ import com.example.miniproject.MainActivity;
 import com.example.miniproject.R;
 import com.example.miniproject.SignUpActivity;
 import com.example.miniproject.db.DataBaseHelper;
+import com.example.miniproject.dbadapter.DBInsAdapter;
+import com.example.miniproject.dbadapter.DbData.DbInsData;
+
+import java.util.ArrayList;
 
 public class Tab1_Home extends Fragment {
-
-
 
     TextView textView;
     Button backbtn;
 
     DataBaseHelper dbHelper;
+
+    RecyclerView recyclerView;
+    DBInsAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,10 +52,19 @@ public class Tab1_Home extends Fragment {
 
         textView = rootView.findViewById(R.id.information);
 
-
         //헬퍼객체 생성
         dbHelper = new DataBaseHelper(this.getContext());
 
+        ArrayList<DbInsData> result = dbHelper.insQuery();
+
+        recyclerView = rootView.findViewById(R.id.dbinsrecyclerview);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new DBInsAdapter();
+        recyclerView.setAdapter(adapter);
+
+        adapter.setItems(result);
 
         //버튼을 생성하여 다시 LoginActivity로 돌아가는 Intent 생성
         backbtn = rootView.findViewById(R.id.back);
@@ -66,7 +82,7 @@ public class Tab1_Home extends Fragment {
 
         //fragment에서 sharedPreferences 사용하려면 this.getActivity().getSharedPreferences 사용해야함
         SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("shared", MODE_PRIVATE);
-        String IDvalue = sharedPreferences.getString("ID","");
+        String IDvalue = sharedPreferences.getString("ID", "");
         String PWvalue = sharedPreferences.getString("PW","");
         //.getString("호출할이름", "Default값");
 
@@ -76,25 +92,26 @@ public class Tab1_Home extends Fragment {
 
     }
 
-    public  void insSelect(){
-        Cursor cursor4 = dbHelper.insQuery();
 
-        int recordCount3 = cursor4.getCount();
-
-        for (int i = 0; i < recordCount3; i++){
-            cursor4.moveToNext();
-
-            int id = cursor4.getInt(0);
-            String userimg = cursor4.getString(1);
-            String name = cursor4.getString(2);
-            String mainimg = cursor4.getString(3);
-            String inslike = cursor4.getString(4);
-            String tag = cursor4.getString(5);
-
-            Log.d("insDB","레코드 " + i + " : " + id + ", " + userimg + ", " + name + ", " + mainimg + ", " + inslike + ", " + tag);
-        }
-
-        cursor4.close();
-    }
+//    public  void insSelect(){
+//        Cursor cursor4 = dbHelper.insQuery();
+//
+//        int recordCount3 = cursor4.getCount();
+//
+//        for (int i = 0; i < recordCount3; i++){
+//            cursor4.moveToNext();
+//
+//            int id = cursor4.getInt(0);
+//            String userimg = cursor4.getString(1);
+//            String name = cursor4.getString(2);
+//            String mainimg = cursor4.getString(3);
+//            String inslike = cursor4.getString(4);
+//            String tag = cursor4.getString(5);
+//
+//            Log.d("insDB","레코드 " + i + " : " + id + ", " + userimg + ", " + name + ", " + mainimg + ", " + inslike + ", " + tag);
+//        }
+//
+//        cursor4.close();
+//    }
 
 }

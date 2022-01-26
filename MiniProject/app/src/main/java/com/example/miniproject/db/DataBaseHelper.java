@@ -8,7 +8,10 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.miniproject.R;
+import com.example.miniproject.dbadapter.DbData.DbInsData;
 import com.example.miniproject.main.Tab3_Community;
+
+import java.util.ArrayList;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -175,26 +178,56 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cursor3.close();
     }
 
+
     //SELECT문(인스타 정보)
-    public  Cursor insQuery(){
+    public ArrayList<DbInsData> insQuery(){
+        ArrayList<DbInsData> result = new ArrayList<DbInsData>();
+
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor4 = database.rawQuery("SELECT * FROM insTBL", null);
 
-//        int recordCount3 = cursor4.getCount();
-//
-//        for (int i = 0; i < recordCount3; i++){
-//            cursor4.moveToNext();
-//
-//            int id = cursor4.getInt(0);
-//            String userimg = cursor4.getString(1);
-//            String name = cursor4.getString(2);
-//            String mainimg = cursor4.getString(3);
-//            String inslike = cursor4.getString(4);
-//            String tag = cursor4.getString(5);
-//
-//            Log.d("insDB","레코드 " + i + " : " + id + ", " + userimg + ", " + name + ", " + mainimg + ", " + inslike + ", " + tag);
-//        }
-//        cursor4.close();
-        return cursor4;
+        int recordCount3 = cursor4.getCount();
+
+        for (int i = 0; i < recordCount3; i++){
+            cursor4.moveToNext();
+
+            int id = cursor4.getInt(0);
+            String userimg = cursor4.getString(1);
+            String name = cursor4.getString(2);
+            String mainimg = cursor4.getString(3);
+            String inslike = cursor4.getString(4);
+            String tag = cursor4.getString(5);
+
+            Log.d("insDB","레코드 " + i + " : " + id + ", " + userimg + ", " + name + ", " + mainimg + ", " + inslike + ", " + tag);
+
+            DbInsData info = new DbInsData(userimg, name, mainimg, inslike, tag);
+            result.add(info);
+        }
+        cursor4.close();
+
+        return result;
     }
+
+//    //SELECT문(인스타 정보)
+//    public  Cursor insQuery(){
+//        SQLiteDatabase database = getReadableDatabase();
+//        Cursor cursor4 = database.rawQuery("SELECT * FROM insTBL", null);
+//
+////        int recordCount3 = cursor4.getCount();
+////
+////        for (int i = 0; i < recordCount3; i++){
+////            cursor4.moveToNext();
+////
+////            int id = cursor4.getInt(0);
+////            String userimg = cursor4.getString(1);
+////            String name = cursor4.getString(2);
+////            String mainimg = cursor4.getString(3);
+////            String inslike = cursor4.getString(4);
+////            String tag = cursor4.getString(5);
+////
+////            Log.d("insDB","레코드 " + i + " : " + id + ", " + userimg + ", " + name + ", " + mainimg + ", " + inslike + ", " + tag);
+////        }
+////        cursor4.close();
+//        return cursor4;
+//    }
 }

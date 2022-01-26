@@ -45,4 +45,9 @@ public class DBInsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public int getItemCount() {
         return dbItems.size();
     }
+
+    public void setItems(ArrayList<DbInsData> items){
+        this.dbItems = items;
+    }
+
 }
