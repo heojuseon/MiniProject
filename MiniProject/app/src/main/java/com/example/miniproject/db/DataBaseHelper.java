@@ -180,6 +180,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     //SELECT문(인스타 정보)
+    //DbInsData클래스를 ArrayList객체에 담아서 메소드 생성
     public ArrayList<DbInsData> insQuery(){
         ArrayList<DbInsData> result = new ArrayList<DbInsData>();
 
@@ -200,9 +201,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
             Log.d("insDB","레코드 " + i + " : " + id + ", " + userimg + ", " + name + ", " + mainimg + ", " + inslike + ", " + tag);
 
+            //DbInsData 클래스의 정보들을 불러오는 객체 생성하여 return으로 result값 반환
             DbInsData info = new DbInsData(userimg, name, mainimg, inslike, tag);
             result.add(info);
         }
+
         cursor4.close();
 
         return result;

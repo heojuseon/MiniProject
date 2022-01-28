@@ -46,6 +46,7 @@ public class DBInsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         return dbItems.size();
     }
 
+    //연결한 어뎁터를 DbInsData클래스에 담겨있는 정보들을 불러와 화면 연결 위해 setItems라는 메소드 생성
     public void setItems(ArrayList<DbInsData> items){
         this.dbItems = items;
     }

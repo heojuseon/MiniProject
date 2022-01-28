@@ -55,15 +55,19 @@ public class Tab1_Home extends Fragment {
         //헬퍼객체 생성
         dbHelper = new DataBaseHelper(this.getContext());
 
+
+        //insQuery()메소드 호출하기위한 객체 생성(ArrayList 형태로 메소드를 만들었기 때문에)
         ArrayList<DbInsData> result = dbHelper.insQuery();
 
         recyclerView = rootView.findViewById(R.id.dbinsrecyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
+        //어뎁터 객체 생성
         adapter = new DBInsAdapter();
         recyclerView.setAdapter(adapter);
 
+        //setItems메소드를 어뎁터랑 연결
         adapter.setItems(result);
 
         //버튼을 생성하여 다시 LoginActivity로 돌아가는 Intent 생성
