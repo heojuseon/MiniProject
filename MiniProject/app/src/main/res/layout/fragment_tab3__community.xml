@@ -182,6 +182,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="조회2" />
+
+        <Button
+            android:id="@+id/insdelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="삭제2" />
+
+        <Button
+            android:id="@+id/insupdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="수정2" />
     </LinearLayout>
 
 </LinearLayout>

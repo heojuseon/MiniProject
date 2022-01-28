@@ -35,7 +35,7 @@ public class Tab3_Community extends Fragment {
     Button btnde;
     Button btnup;
 
-    Button btninsin, btninssele;
+    Button btninsin, btninssele, btninsdelete, btninsupdate;
 
     TextView textView;
 
@@ -65,7 +65,6 @@ public class Tab3_Community extends Fragment {
         btninsin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 dbHelper.insertIns(edituserimg.getText().toString()
                         , editinsname.getText().toString()
                         , editmainimg.getText().toString()
@@ -82,6 +81,29 @@ public class Tab3_Community extends Fragment {
                 dbHelper.insQuery();
             }
         });
+
+        //인스타 DELETE Database
+        btninsdelete = rootView.findViewById(R.id.insdelete);
+        btninsdelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbHelper.deleteIns(edituserimg.getText().toString());
+            }
+        });
+
+        //인스타 UPDATE Database
+        btninsupdate = rootView.findViewById(R.id.insupdate);
+        btninsupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbHelper.updateIns(edituserimg.getText().toString()
+                        , editinsname.getText().toString()
+                        , editmainimg.getText().toString()
+                        , editlike.getText().toString()
+                        , edittag.getText().toString());
+            }
+        });
+
 
 
         //INSERT Database

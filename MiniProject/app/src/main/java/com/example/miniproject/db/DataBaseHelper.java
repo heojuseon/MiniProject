@@ -106,13 +106,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //UPDAT문
+
+
+
+
+    //UPDATE문
     public void updateRecord(String userName, String userHealth, int userCount){
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL("UPDATE groupTBL SET name='" + userName + "', health='" + userHealth + "', count='" + userCount + "' WHERE name='" + userName + "'");
 
         Log.d("수정", userName + "\t"+ userHealth + "\t" + userCount);
     }
+    //UPDATE문(인스타 정보)
+    public void updateIns(String userImage, String userName, String mainImage, String userLike, String usertag){
+        SQLiteDatabase database = getWritableDatabase();
+        database.execSQL("UPDATE insTBL SET userimg='" + userImage + "', name='" + userName + "', mainimg='" + mainImage + "', inslike='" + userLike + "', tag='" + usertag + "' WHERE name='" + userName + "'");
+
+        Log.d("인스타 정보 수정", userImage + "\t"+ userName + "\t" + mainImage +  "\t" + userLike + "\t" + usertag);
+    }
+
+
+
+
 
     //DELETE문
     public void deleteRecord(String userName){
@@ -122,6 +137,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Log.d("삭제", userName);
 
     }
+    //DELETE문(인스타 정보)
+    public void deleteIns(String userImage){
+        SQLiteDatabase database = getWritableDatabase();
+        database.execSQL("DELETE FROM insTBL WHERE userimg = '" + userImage + "'");
+
+        Log.d("인스타 정보 삭제", userImage);
+    }
+
+
+
+
+
+
 
     //SELECT문
     public Cursor userSelect(){
@@ -177,7 +205,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         cursor3.close();
     }
-
 
     //SELECT문(인스타 정보)
     //DbInsData클래스를 ArrayList객체에 담아서 메소드 생성

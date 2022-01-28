@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.miniproject.R;
+import com.example.miniproject.dbadapter.DBInsAdapter;
 import com.example.miniproject.dbadapter.DbData.DbInsData;
 
 public class DbIns_Item extends RecyclerView.ViewHolder{
@@ -20,7 +21,7 @@ public class DbIns_Item extends RecyclerView.ViewHolder{
     TextView dbtg;
 
 
-    public DbIns_Item(View itemView) {
+    public DbIns_Item(View itemView, final DBInsAdapter listener) {
         super(itemView);
 
         dbimg = itemView.findViewById(R.id.dbimage);
@@ -28,6 +29,20 @@ public class DbIns_Item extends RecyclerView.ViewHolder{
         dbnm = itemView.findViewById(R.id.dbname);
         dblk = itemView.findViewById(R.id.dblike);
         dbtg = itemView.findViewById(R.id.dbtag);
+
+
+        //아이템뷰에 OnClickListener 설정하기
+        //아이템 뷰 클릭 시 미리 정의한 다른 리스너의 메소드 호출
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = getAdapterPosition();
+                if (listener != null){
+                    listener.onInsItemClickListener(DbIns_Item.this, view, position);
+                }
+            }
+        });
+
     }
 
     public void setItem(DbInsData item){

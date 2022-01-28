@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.miniproject.LoginActivity;
 import com.example.miniproject.MainActivity;
@@ -26,6 +27,7 @@ import com.example.miniproject.SignUpActivity;
 import com.example.miniproject.db.DataBaseHelper;
 import com.example.miniproject.dbadapter.DBInsAdapter;
 import com.example.miniproject.dbadapter.DbData.DbInsData;
+import com.example.miniproject.home.OnInsItemClickListener;
 
 import java.util.ArrayList;
 
@@ -82,6 +84,18 @@ public class Tab1_Home extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+        //onItemClickListener사용 메소드
+        adapter.setOnItemClickListener(new OnInsItemClickListener() {
+            @Override
+            public void onInsItemClickListener(RecyclerView.ViewHolder holder, View view, int position) {
+                DbInsData item = adapter.getItem(position);
+                Toast.makeText(holder.itemView.getContext(), "name : " + item.getName(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
 
         //fragment에서 sharedPreferences 사용하려면 this.getActivity().getSharedPreferences 사용해야함
