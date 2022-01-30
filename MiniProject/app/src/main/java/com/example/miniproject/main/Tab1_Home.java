@@ -27,8 +27,10 @@ import com.example.miniproject.SignUpActivity;
 import com.example.miniproject.db.DataBaseHelper;
 import com.example.miniproject.dbadapter.DBInsAdapter;
 import com.example.miniproject.dbadapter.DbData.DbInsData;
+import com.example.miniproject.home.InsdetailActivity;
 import com.example.miniproject.home.OnInsItemClickListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Tab1_Home extends Fragment {
@@ -91,6 +93,28 @@ public class Tab1_Home extends Fragment {
             @Override
             public void onInsItemClickListener(RecyclerView.ViewHolder holder, View view, int position) {
                 DbInsData item = adapter.getItem(position);
+
+                //Intent를 사용하여 Activity 간에 객체(Object)를 전달해야 할 때 (Serializable)item 형태를 사용해야한다.
+                //DbInsData클래스에 Serializable을 implements 해서 객체를 만들어주고 객체를 보내주면 됩니다.
+                Intent intent = new Intent(getActivity(), InsdetailActivity.class);
+                intent.putExtra("insData", (Serializable)item);
+
+
+
+
+
+
+
+//                intent.putExtra("img", item.getUserimg());
+//                intent.putExtra("InsName", item.getName());
+//                intent.putExtra("InsMainimg", item.getMainimg());
+//                intent.putExtra("InsLike", item.getLike());
+//                intent.putExtra("InsTag", item.getTag());
+
+                startActivity(intent);
+
+
+
                 Toast.makeText(holder.itemView.getContext(), "name : " + item.getName(), Toast.LENGTH_LONG).show();
             }
         });

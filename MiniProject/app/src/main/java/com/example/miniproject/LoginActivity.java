@@ -44,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        //이걸 왜 빼먹냐...
         //헬퍼 객체 생성
         dbHelper2 = new DataBaseHelper(this);
 

@@ -1,11 +1,18 @@
 package com.example.miniproject.dbadapter.DbData;
 
-public class DbInsData {
+import java.io.Serializable;
+
+
+//Intent로 객체를 전달할때는 implements Serializable 사용해야한다.
+public class DbInsData implements Serializable {
     String userimg;
     String name;
     String mainimg;
     String like;
     String tag;
+
+
+    private static final long serialVersionUID = 1L;
 
     public DbInsData(String userimg, String name, String mainimg, String like, String tag) {
         this.userimg = userimg;
